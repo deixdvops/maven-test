@@ -13,12 +13,10 @@ pipeline {
             steps{
                 git branch: 'main', url: 'https://github.com/deixdvops/maven-test.git'
             }
-        }
-       
-        }
+      }
         stage('Code Build') {
             steps {
-                sh 'mvn clean install package'
+                sh 'mvn clean package'
             }
         }
         stage('Test') {
@@ -38,7 +36,7 @@ pipeline {
                 script{ 
                     docker.withRegistry("https://"+registry,"ecr:us-east-1:"+registryCredential) {
                         dockerImage.push()
-                    
+                    }
                 }
             }
         }  
