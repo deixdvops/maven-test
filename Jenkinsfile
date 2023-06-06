@@ -14,13 +14,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/deixdvops/maven-test.git'
             }
         }
-        stage ("Sonarqube scan") {
-          steps{
-          withSonarQubeEnv('sonar') {  
-        sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=kserge2001_geo'
-                }
-  
-          }
+       
         }
         stage('Code Build') {
             steps {
